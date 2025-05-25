@@ -3,29 +3,43 @@
 <head>
     <title>Food Analysis App</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="{{ url_for('static', filename='script.js') }}" defer></script>
 </head>
 <body>
-    <header>
-        <h1>Nutritional Image Analysis</h1>
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="logo">Vital.AI</div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="services.html">Services</a></li>
+            </ul>
+        </nav>
+        <button id="theme-toggle">🌙</button>
     </header>
-    <main class="content">
-        <div class="input-section">
+
+    <main class="container">
+        <!-- Left Box -->
+        <div class="left-box">
+            <h1>Meal Plate Nutrient Analyzer</h1>
+            <h2>Upload Image</h2>
             <form method="POST" enctype="multipart/form-data" id="uploadForm">
                 <input type="file" name="image" accept="image/*" id="imageInput">
                 <label for="imageInput" class="upload-label">Choose an Image</label><br><br>
-                 <!-- <textarea name="prompt" id="prompt" rows="4" cols="50">Give a detailed nutrient categorization of the given food in numbers for each macro nutrient division out of 100  and little description and also give the sustainability count out of 100 and calorie count of the food</textarea><br><br> -->
                 <button type="submit" class="analyze-button">Analyze</button>
             </form>
-            <div id="loading" class="loading-message hidden">Analyzing...</div>
-        </div>
-        <div class="result-section">
-            <div class="image-display">
+            <!-- <div id="loading" class="loading-message hidden">Analyzing...</div> -->
+            <div class="image-preview">
                 <img id="uploadedImage" src="" alt="Uploaded Image" class="uploaded-image hidden">
             </div>
+        </div>
+
+        <!-- Right Box -->
+        <div class="right-box">
+            <h2>Analysis Result</h2>
             <div id="output" class="output-container">
                 {% if output_text %}
-                    <h2>Analysis:</h2>
                     <p>{{ output_text|safe }}</p>
                     <div id="chartContainer" class="chart-container">
                         <canvas id="nutrientChart"></canvas>
@@ -34,6 +48,7 @@
             </div>
         </div>
     </main>
+
     <script src="{{ url_for('static', filename='script.js') }}"></script>
 </body>
 </html>
