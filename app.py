@@ -6,8 +6,8 @@ import os
 
 app = Flask(__name__)
 
-GOOGLE_API_KEY = "AIzaSyByDORRrLs1AcGbsSXjQhknGAZDpp9uIMM"
-genai.configure(api_key=GOOGLE_API_KEY)
+TOMATO = "AIzaSyB9_ALEj1KbhQU84rTqtErcwJPauDNKriE"
+genai.configure(api_key=TOMATO)
 model = genai.GenerativeModel('gemini-2.5-flash')
 
 @app.route("/", methods=["GET", "POST"])
